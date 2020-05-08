@@ -1,0 +1,112 @@
+CLS
+
+COLOR 6
+PRINT "***********************************************"
+PRINT "* NOT HESAPLAMA VE HARF NOTU GOSTERME SISTEMI *"
+PRINT "* Author: Yusa Cagatay Gunaydin Versin: 1.1  *"
+PRINT "***********************************************"
+
+Vize_Oran = 40
+Final_Oran = 60
+
+FOR Y = 0 TO 1 STEP 1
+
+    COLOR 3, 0
+    INPUT "Hesapalamada Vize ve Final Standart oranlarini degisterimek istermisiniz? (E / H yaziniz..): ", Sec$
+
+    IF Sec$ = "E" OR Sec$ = "e" THEN
+        Y = 1
+        COLOR 3
+        FOR Z = 0 TO 1 STEP 1
+            INPUT "Vize, Yeni oran giriniz: ", Vize_Oran
+            INPUT "Final, Yeni oran giriniz: ", Final_Oran
+            IF (Vize_Oran >= 0 AND Vize_Oran <= 100) AND (Final_Oran >= 0 AND Final_Oran <= 100) THEN
+                Z = 1
+                CLS
+                COLOR 13
+                PRINT "Vize ="; Vize_Oran; ", Final ="; Final_Oran; ", Yeni oranda hesaplama gerceklesecek."
+            ELSE
+                Z = 0
+                COLOR 14
+                PRINT "ééé (Gecersiz oran girisi gerceklesti, tekrar deneyiniz.. é Vize ve Final Oran degerleri) ééé"
+            END IF
+        NEXT Z
+
+    ELSEIF Sec$ = "H" OR Sec$ = "h" THEN
+        Y = 1
+        CLS
+        COLOR 13
+        PRINT "Vize ="; Vize_Oran; ", Final ="; Final_Oran; ", Standart oranda hesaplama gerceklesecek."
+    ELSE
+        Y = 0
+        CLS
+        COLOR 14
+        PRINT "ééé (Gecersiz secim gerceklesti, tekrar deneyiniz. é Evet icin E karakterini Hayir icin H karaterini yaziniz..) ééé"
+    END IF
+NEXT Y
+
+FOR Say = 0 TO 1 STEP 1
+
+    COLOR 3
+    INPUT "Vize notu giriniz: ", Vize
+    INPUT "Final notu giriniz: ", Final
+
+    CLS
+
+    IF (Vize >= 0 AND Vize <= 100) AND (Final >= 0 AND Final <= 100) THEN
+
+        Hampuan = (Vize * (Vize_Oran / 100)) + (Final * (Final_Oran / 100))
+
+        IF (Hampuan >= 85) AND (Hampuan <= 100) THEN
+            COLOR 10, 9
+            PRINT "Harf Notunuz: AA, Hesaplanan Puan: "; Hampuan
+        ELSEIF (Hampuan >= 75) AND (Hampuan <= 84.99) THEN
+            COLOR 11, 9
+            PRINT "Harf Notunuz: BA, Hesaplanan Puan: "; Hampuan
+        ELSEIF (Hampuan >= 65) AND (Hampuan <= 74.99) THEN
+            COLOR 14, 4
+            PRINT "Harf Notunuz: BB, Hesaplanan Puan: "; Hampuan
+        ELSEIF (Hampuan >= 60) AND (Hampuan <= 64.99) THEN
+            COLOR 13, 9
+            PRINT "Harf Notunuz: CB, Hesaplanan Puan: "; Hampuan
+        ELSEIF (Hampuan >= 55) AND (Hampuan <= 59.99) THEN
+            COLOR 6, 9
+            PRINT "Harf Notunuz: CC, Hesaplanan Puan: "; Hampuan
+        ELSEIF (Hampuan >= 50) AND (Hampuan <= 54.99) THEN
+            COLOR 8, 15
+            PRINT "Harf Notunuz: DC, Hesaplanan Puan: "; Hampuan
+        ELSEIF (Hampuan >= 45) AND (Hampuan <= 49.99) THEN
+            COLOR 7, 9
+            PRINT "Harf Notunuz: DD, Hesaplanan Puan: "; Hampuan
+        ELSEIF (Hampuan >= 0) AND (Hampuan <= 44.99) THEN
+            COLOR 12, 9
+            PRINT "Harf Notunuz: FF, Hesaplanan Puan: "; Hampuan
+        END IF
+
+        FOR X = 0 TO 1 STEP 1
+            COLOR 3, 0
+            INPUT "Yeniden hesaplamak istermisiniz? (E / H yaziniz..): ", Sor$
+            CLS
+            IF Sor$ = "E" OR Sor$ = "e" THEN
+                Say = 0
+                X = 1
+            ELSEIF Sor$ = "H" OR Sor$ = "h" THEN
+                Say = 1
+                X = 1
+                COLOR 14
+                PRINT "Guzel gunler dileriz, sistemi kapamak icin herhangi bir tusa bsiniz.."
+            ELSE
+                X = 0
+                COLOR 14
+                PRINT "ééé (Gecersiz secim gerceklesti, tekrar deneyiniz.. é Evet icin E karakterini Hayir icin H karaterini yaziniz..) ééé"
+            END IF
+        NEXT X
+
+    ELSE
+        COLOR 14
+        PRINT "ééé Gecersiz not girisi, tekrar deneyiniz.. ééé"
+        Say = 0
+    END IF
+
+NEXT Say
+END
