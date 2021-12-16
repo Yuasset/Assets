@@ -23,9 +23,4 @@ if [ "$Deneme" = 1 ]; then
 	else
 		echo "Hashlenen dosya dizin yolu: $Dir_Adress/$File_Name"
 	fi
-	pwd
-elif [ "$Deneme" = 2 ]; then
-	echo "Deneme 2 çalıştı"
-	id
-	who
 fi
